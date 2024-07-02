@@ -4,12 +4,13 @@ use Bramus\Router\Router;
 
 $router = new Router();
 $router->setNamespace('\App\Controllers');
+
 use App\Controllers\Home;
+use App\Controllers\User;
+
+
 //Page d'accueil
-$router->get('/', function() {
-    $controller = new Home();
-    $controller->index();
-});
+$router->get('/', 'Home@index');
 $router->get('/home', 'Home@index');
 
 //Utilisateurs

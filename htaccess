@@ -1,7 +1,9 @@
-    RewriteEngine On
-    RewriteBase /
+# .htaccess file
+RewriteEngine On
 
-    # Redirect all requests to index.php
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ index.php [QSA,L]
+# Test directive
+Redirect 404 /test404
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]

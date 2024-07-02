@@ -10,7 +10,7 @@ class User
         require RACINE . '/App/Views/head.php';
         require RACINE . '/App/Views/header.php';
         require RACINE . '/App/Views/allUsers.php';
-        require RACINE . '/App/Views/footer.php';
+        require RACINE . '/App/Views/foot.php';
     }
 
     public function addUser()
@@ -19,7 +19,7 @@ class User
         require RACINE . '/App/Views/head.php';
         require RACINE . '/App/Views/header.php';
         require RACINE . '/App/Views/addUser.php';
-        require RACINE . '/App/Views/footer.php';
+        require RACINE . '/App/Views/foot.php';
 
 
         $msg = null;

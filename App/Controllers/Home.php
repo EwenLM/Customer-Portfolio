@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-
-echo " zr";
 class Home
 {
     public function index()
@@ -11,8 +9,8 @@ class Home
        
         require RACINE . '/App/Views/head.php';
         require RACINE . '/App/Views/header.php';
-        require RACINE . '/App/Views/home.php';
-        require RACINE . '/App/Views/footer.php';
+        require RACINE . '/App/Views/homeView.php';
+        require RACINE . '/App/Views/foot.php';
     }
 
 }
