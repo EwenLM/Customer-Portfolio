@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Location;
 use App\Models\User;
 
 
@@ -67,22 +68,24 @@ class UserController
 
     public function userFind()
     {
+        $results = [];
+
         if (isset($_POST['search'])) {
             $searchTerm = $_POST['search'] ?? '';
-    
+
             $userFind = new User();
-    
+
             // Vérifier si le terme de recherche est un entier
             if (ctype_digit($searchTerm)) {
                 // Recherche par ID
-                 $userFind->findBy(["id" => (int)$searchTerm]);
+                $results = $userFind->findBy(["id" => (int)$searchTerm]);
             } else {
                 // Recherche par nom
-                $userFind->findBy(["lastname" => $searchTerm]);
+                $results = $userFind->findBy(["lastname" => $searchTerm]);
             }
-            
-            var_dump($userFind);
+        $_SESSION['results'] = $results;
         }
+        header('Location: ../user/search');
     }
     
 
