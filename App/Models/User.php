@@ -24,11 +24,11 @@ class User extends Model
      * @param [type] $city
      * @param $mobile
      */
-    public function __construct($id= null, $first_name = null,$last_name = null ,$address = null, $zip_code=null, $city=null , $mobile = null)
+    public function __construct($id= null,$last_name = null,$first_name = null ,$address = null, $zip_code=null, $city=null , $mobile = null)
     {
         $this->id = $id;
-        $this->first_name = $first_name;
         $this->last_name = $last_name;
+        $this->first_name = $first_name;
         $this->address = $address;
         $this->zip_code = $zip_code;
         $this->city = $city;
@@ -38,8 +38,8 @@ class User extends Model
         //Insertions des données dans le tableau params
         $params = [
             'id'=>$id,
-            'firstname' => $first_name,
             'lastname' => $last_name,
+            'firstname' => $first_name,
             'address' => $address,
             'zip_code' => $zip_code,
             'city' =>$city,

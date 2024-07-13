@@ -15,7 +15,7 @@ abstract class Db
         $dbhost = $_ENV['DBHOST'] ?? 'localhost';
         $dbuser = $_ENV['DBUSER'] ?? 'root';
         $dbpass = $_ENV['DBPASS'] ?? '';
-        $dbname = $_ENV['DBNAME'] ?? 'customer';
+        $dbname = $_ENV['DBNAME'] ?? 'custommer';
     
         // DSN de connexion
         $dsn = 'mysql:dbname=' . $dbname . ';host=' . $dbhost;

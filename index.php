@@ -1,3 +1,4 @@
+
 <?php
 // Démarrer la session, s'il n'est pas déjà démarrée
 if(session_status() === PHP_SESSION_NONE){
@@ -23,4 +24,4 @@ $dotenv->load();
 
 //Charger le fichier de routage
 
-require RACINE . '/App/Routers/Route.php';
+require RACINE . '/App/Router/Route.php';

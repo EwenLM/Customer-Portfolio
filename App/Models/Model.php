@@ -58,7 +58,7 @@ class Model
         $query = $this->query('SELECT * FROM ' . $this->table);
         return $query->fetchAll();
     }
-
+    
 
     /**
      * Sélection de plusieurs enregistrements suivant un tableau de critères
@@ -99,37 +99,6 @@ class Model
     }
 
 
-  /**
-     * Méthode pour réaliser des jointures multiples
-     * @param string $baseTable Nom de la table de base
-     * @param array $joins Tableau de jointures où chaque élément est un tableau avec 'table', 'conditions' et 'type'
-     * @return array Résultat de la jointure
-     */
-    public function joinMultiple($baseTable, $joins)
-    {
-        $this->table = $baseTable;
-        $joinQueries = [];
-
-        foreach ($joins as $join) {
-            $table = $join['table'];
-            $conditions = $join['conditions'];
-            $type = isset($join['type']) ? $join['type'] : 'INNER';
-
-            $joinConditions = [];
-            foreach ($conditions as $localKey => $foreignKey) {
-                $joinConditions[] = "{$this->table}.$localKey = $table.$foreignKey";
-            }
-
-            $joinConditions = implode(' AND ', $joinConditions);
-            $joinQueries[] = "$type JOIN $table ON $joinConditions";
-        }
-
-        $joinsSql = implode(' ', $joinQueries);
-        $query = "SELECT * FROM {$this->table} $joinsSql";
-        $statement = $this->query($query);
-
-        return $statement->fetchAll();
-    }
     //============================Méthodes d'insertion de données================================= 
     /**
      * Insertion d'un enregistrement suivant un tableau de données

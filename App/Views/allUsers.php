@@ -1,24 +1,15 @@
-<h2>Recherche de client</h2>
-
+<main>
 
 <?php
-if (isset($_SESSION['search_results'])) {
-    $results = $_SESSION['search_results'];
-    unset($_SESSION['search_results']);
+if (isset($_SESSION['users'])) {
+    $users = $_SESSION['users'];
+    
 } else {
-    $results = [];
 }
 ?>
-
-
-<form action="./find" method="post">
-    <input type="text" name="search" placeholder="Rechercher un utilisateur...">
-    <input type="submit" value="Rechercher">
-</form>
-
-<?php if (empty($results)) : ?>
+<?php if (empty($users)): ?>
     <p>Aucun client trouvé.</p>
-<?php else : ?>
+<?php else: ?>
     <h3>Informations client</h3>
     <table>
         <thead>
@@ -33,7 +24,7 @@ if (isset($_SESSION['search_results'])) {
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($results as $user) : ?>
+            <?php foreach ($users as $user) : ?>
                 <tr>
                     <td><?= ($user['id']); ?></td>
                     <td><?= ($user['lastname']); ?></td>
@@ -46,17 +37,7 @@ if (isset($_SESSION['search_results'])) {
             <?php endforeach; ?>
         </tbody>
     </table>
-<?php endif;
+    <?php
+     endif ?>
 
-?>
-</section>
-
-<section id="menu">
-
-    <ul>
-        <li><a href="../users">Consulter les fiches clients</a></li>
-        <li><a href="../user/register">Ajouter un client</a></li>
-        <li><a href="../home">Retour à la page d'accueil</a></li>
-    </ul>
-
-</section>
+</main>

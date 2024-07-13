@@ -21,4 +21,6 @@ $router->post('/user/add', 'UserController@userAdd');
 $router ->get('/user/search', 'UserController@search');
 $router->post('/user/find','UserController@userFind');
 
+$router ->get('/users', 'UserController@usersFindAll');
+
 $router->run();
