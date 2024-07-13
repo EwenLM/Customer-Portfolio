@@ -52,7 +52,7 @@ class UserController
                 // Création de l'utilisateur
                 $newUser = new User($first_name, $last_name, $address, $zip_code, $city, $mobile);
                 $newUser->create($newUser);
-                $msg = "Inscription réussie !";
+                $msg = "Client ajouté !";
             }
             header("location: ../user/register");
         }
