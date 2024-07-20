@@ -55,8 +55,8 @@ class Model
      */
     public function findAll()
     {
-        $query = $this->query('SELECT * FROM ' . $this->table);
-        return $query->fetchAll();
+        $result = $this->query("SELECT * FROM {$this->table}")->fetchAll();
+        return $result;
     }
     
 

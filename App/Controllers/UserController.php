@@ -92,11 +92,15 @@ class UserController
                 $results = $userFind->findBy(["id_user" => (int)$searchTerm]);
             } else {
                 // Recherche par nom
-                $userFind->findBy(["last_name" => $searchTerm]);
+                $results = $userFind->findBy(["last_name" => $searchTerm]);
+
+                if(empty($results)){
+                    $results = $userFind->findBy(["first_name" => $searchTerm]);
+                }
             }
-            
-            var_dump($userFind);
+            $_SESSION['results'] = $results;
         }
+
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
     }
@@ -105,7 +109,6 @@ class UserController
     //Retrouver tous les clients
     public function usersFindAll(){
 
-        
         $users = new User();
         $allUsers = $users->findAll();
         

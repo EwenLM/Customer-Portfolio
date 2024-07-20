@@ -2,9 +2,9 @@
 
 
 <?php
-if (isset($_SESSION['search_results'])) {
-    $results = $_SESSION['search_results'];
-    unset($_SESSION['search_results']);
+if (isset($_SESSION['results'])) {
+    $results = $_SESSION['results'];
+    unset($_SESSION['results']);
 } else {
     $results = [];
 }
@@ -20,25 +20,36 @@ if (isset($_SESSION['search_results'])) {
 <h2>Résultats de la recherche</h2>
 
 
-<?php if (!empty($_SESSION['results'])) :
-    $results = $_SESSION['results'] ?>
-    <ul>
-        <?php foreach ($results as $user) : ?>
-            <li>ID: <?= $user['id']; ?></li>
-            <hr>
-            <li>Nom: <?=$user['lastname'];  ?></li>
-            <hr>
-            <li>Prénom: <?= $user['firstname']; ?></li>
-            <hr>
-            <li>Address:</Address> <?= $user['address']; ?></li>
-            <li>Ville: <?= $user['city']; ?></li>
-            <li>Code Postal: <?= $user['zip_code']; ?></li>
-
-        <?php endforeach; ?>
-    </ul>
-<?php 
-unset($_SESSION['results']);
-else : ?>
-    <p>Aucun résultat trouvé.</p>
-<?php endif; ?>
+<?php if (empty($results)): ?>
+    <p>Aucun client trouvé.</p>
+<?php else: ?>
+    <h3>Informations client</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Adresse</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Mobile</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($results as $result) : ?>
+                <tr>
+                    <td><?= ($result['id_user']); ?></td>
+                    <td><?= ($result['last_name']); ?></td>
+                    <td><?= ($result['first_name']); ?></td>
+                    <td><?= ($result['address']); ?></td>
+                    <td><?= ($result['zip_code']); ?></td>
+                    <td><?= ($result['city']); ?></td>
+                    <td><?= ($result['mobile']); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php
+     endif ?>
 
