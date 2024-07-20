@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Location;
 use App\Models\User;
 
 
@@ -52,18 +53,14 @@ class UserController
                 $msg = 'Numéro de mobile non valide';
             } else {
                 // Création de l'utilisateur
-                $newUser = new User($id = null, $last_name, $first_name, $address, $zip_code, $city, $mobile);
-                if ($newUser->create($newUser)) {
-                    $msg = "Client ajouté !";
-                } else {
-                    $msg = "Erreur lors de l'ajout du client";
-                }
+                $newUser = new User($first_name, $last_name, $address, $zip_code, $city, $mobile);
+                $newUser->create($newUser);
+                $msg = "Inscription réussie !";
             }
-
-            // Stocker le message dans la session pour affichage après redirection
-            $_SESSION['msg'] = $msg;
-            header("Location: ../user/register");
+            header("location: ../user/register");
         }
+
+        $_SESSION['msg'] = $msg;
     }
 
 
@@ -77,26 +74,25 @@ class UserController
 
     public function userFind()
     {
+        $results = [];
+
         if (isset($_POST['search'])) {
-            $searchTerm = $_POST['search'];
+            $searchTerm = $_POST['search'] ?? '';
     
             $userFind = new User();
-            
+    
             // Vérifier si le terme de recherche est un entier
             if (ctype_digit($searchTerm)) {
                 // Recherche par ID
                 $results = $userFind->findBy(["id" => (int)$searchTerm]);
             } else {
                 // Recherche par nom
-                $results = $userFind->findBy(["lastname" => $searchTerm, "firstname" => $searchTerm]);
+                $userFind->findBy(["lastname" => $searchTerm]);
             }
-    
-            // Stocker les résultats dans la session pour affichage
-            $_SESSION['search_results'] = $results;
-    
-            header("Location: ../user/search");
-            exit();
+            
+            var_dump($userFind);
         }
+        header('Location: ../user/search');
     }
     
     public function usersFindAll(){

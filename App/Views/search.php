@@ -16,47 +16,29 @@ if (isset($_SESSION['search_results'])) {
     <input type="submit" value="Rechercher">
 </form>
 
-<?php if (empty($results)) : ?>
-    <p>Aucun client trouvé.</p>
-<?php else : ?>
-    <h3>Informations client</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Adresse</th>
-                <th>Code Postal</th>
-                <th>Ville</th>
-                <th>Mobile</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($results as $user) : ?>
-                <tr>
-                    <td><?= ($user['id']); ?></td>
-                    <td><?= ($user['lastname']); ?></td>
-                    <td><?= ($user['firstname']); ?></td>
-                    <td><?= ($user['address']); ?></td>
-                    <td><?= ($user['zip_code']); ?></td>
-                    <td><?= ($user['city']); ?></td>
-                    <td><?= ($user['mobile']); ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-<?php endif;
 
-?>
-</section>
+<h2>Résultats de la recherche</h2>
 
-<section id="menu">
 
+<?php if (!empty($_SESSION['results'])) :
+    $results = $_SESSION['results'] ?>
     <ul>
-        <li><a href="../users">Consulter les fiches clients</a></li>
-        <li><a href="../user/register">Ajouter un client</a></li>
-        <li><a href="../home">Retour à la page d'accueil</a></li>
-    </ul>
+        <?php foreach ($results as $user) : ?>
+            <li>ID: <?= $user['id']; ?></li>
+            <hr>
+            <li>Nom: <?=$user['lastname'];  ?></li>
+            <hr>
+            <li>Prénom: <?= $user['firstname']; ?></li>
+            <hr>
+            <li>Address:</Address> <?= $user['address']; ?></li>
+            <li>Ville: <?= $user['city']; ?></li>
+            <li>Code Postal: <?= $user['zip_code']; ?></li>
 
-</section>
+        <?php endforeach; ?>
+    </ul>
+<?php 
+unset($_SESSION['results']);
+else : ?>
+    <p>Aucun résultat trouvé.</p>
+<?php endif; ?>
+
