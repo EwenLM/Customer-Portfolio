@@ -26,7 +26,7 @@ if (isset($_SESSION['users'])) {
         <tbody>
             <?php foreach ($users as $user) : ?>
                 <tr>
-                    <td><?= ($user['id']); ?></td>
+                    <td><?= ($user['id_user']); ?></td>
                     <td><?= ($user['lastname']); ?></td>
                     <td><?= ($user['firstname']); ?></td>
                     <td><?= ($user['address']); ?></td>

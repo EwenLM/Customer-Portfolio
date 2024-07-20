@@ -8,10 +8,10 @@
 
     <form action="./add" method="post">
         <label for="lastname">Nom</label>
-        <input type="text" name="lastname">
+        <input type="text" name="last_name">
 
         <label for="firstname">Prénom</label>
-        <input type="text" name="firstname">
+        <input type="text" name="first_name">
 
         <label for="address">Adresse</label>
         <input type="text" name="address">

@@ -22,7 +22,7 @@ class Model
     {
         $this->params = $params;
         $this->table = $table;
-        $this->db = Connector::getInstance()->getPdo();
+        $this->db = Db::getInstance()->getPdo();
     }
 
 

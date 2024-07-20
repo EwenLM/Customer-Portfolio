@@ -5,8 +5,9 @@ namespace App\Models;
 use PDO;
 use PDOException;
 
-abstract class Db
+class Db
 {
+    private static $instance;
     protected $pdo;
 
     protected function __construct()
@@ -37,4 +38,21 @@ abstract class Db
     {
         return $this->pdo;
     }
+
+    // Méthode pour récupérer l'instance de la classe Db
+    public static function getInstance(): self
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+}
+
+// Utilisation la classe Db pour obtenir une instance de PDO
+try {
+    $db = Db::getInstance()->getPdo();
+    // Utilisation de $db pour effectuer des opérations sur la base de données
+} catch (PDOException $e) {
+    echo "Erreur de connexion à la base de données: " . $e->getMessage();
 }

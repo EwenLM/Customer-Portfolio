@@ -37,9 +37,9 @@ class User extends Model
 
         //Insertions des données dans le tableau params
         $params = [
-            'id'=>$id,
-            'lastname' => $last_name,
-            'firstname' => $first_name,
+            'id_user'=>$id,
+            'last_name' => $last_name,
+            'first_name' => $first_name,
             'address' => $address,
             'zip_code' => $zip_code,
             'city' =>$city,
